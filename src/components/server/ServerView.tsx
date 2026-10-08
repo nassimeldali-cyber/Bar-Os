@@ -46,7 +46,7 @@ export const ServerView: React.FC<ServerViewProps> = ({ onOpenTableClient }) => 
   const [selectedTable, setSelectedTable] = useState<TableItem | null>(null);
 
   const restaurantId = currentRestaurant?.id || 'a0000000-0000-0000-0000-000000000001';
-  const currency = currentRestaurant?.currency || 'TND';
+  const currency = currentRestaurant?.currency || 'DT';
 
   // Load server assigned table IDs
   const assignedTableIds = useMemo(() => {

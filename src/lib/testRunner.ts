@@ -95,7 +95,7 @@ export async function runAllTests(): Promise<{
     if (order.total !== Number((item1.price * 2).toFixed(3))) throw new Error('Montant total de commande incorrect');
     const session = dbEngine.getSessionById(activeSessionId);
     if (session?.total_amount !== order.total) throw new Error('Le total de session doit refléter la commande');
-    return `Commande #${order.order_number} créée (Total: ${order.total.toFixed(3)} TND). Session mise à jour.`;
+    return `Commande #${order.order_number} créée (Total: ${order.total.toFixed(3)} DT). Session mise à jour.`;
   });
 
   // TEST 4: Plusieurs commandes dans une même session
@@ -114,7 +114,7 @@ export async function runAllTests(): Promise<{
     if (Math.abs((session?.total_amount || 0) - expectedTotal) > 0.001) {
       throw new Error(`Total cumulé erroné: attendu ${expectedTotal}, obtenu ${session?.total_amount}`);
     }
-    return `Deuxième commande #${order2.order_number} ajoutée. Total cumulé session: ${session?.total_amount.toFixed(3)} TND.`;
+    return `Deuxième commande #${order2.order_number} ajoutée. Total cumulé session: ${session?.total_amount.toFixed(3)} DT.`;
   });
 
   // TEST 5: Notification serveur

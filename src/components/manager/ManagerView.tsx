@@ -41,7 +41,7 @@ export const ManagerView: React.FC<ManagerViewProps> = ({ onOpenTableClient }) =
   >('KPIS');
 
   const restaurantId = currentRestaurant?.id || 'a0000000-0000-0000-0000-000000000001';
-  const currency = currentRestaurant?.currency || 'TND';
+  const currency = currentRestaurant?.currency || 'DT';
 
   // Data fetching
   const tables = useMemo(() => dbEngine.getTables(restaurantId), [restaurantId, lastEventTimestamp]);

@@ -22,8 +22,9 @@ import {
   PaymentMethod,
   ServiceRequestType
 } from '../types/database';
+import { ZOO_BAR_RESTAURANT, ZOO_BAR_CATEGORIES, ZOO_BAR_PRODUCTS } from '../data/zooBarMenu';
 
-const STORAGE_KEY = 'barlounge_saas_db_v2';
+const STORAGE_KEY = 'barlounge_saas_db_v4_zoobar_full';
 const SYNC_CHANNEL_NAME = 'barlounge_sync_channel';
 
 // Realtime event emitter
@@ -118,23 +119,11 @@ export interface DbState {
 }
 
 export const INITIAL_DATA: DbState = {
-  restaurants: [
-    {
-      id: 'a0000000-0000-0000-0000-000000000001',
-      name: 'Demo Lounge & Bar',
-      slug: 'demo-lounge',
-      address: 'Les Berges du Lac 2, Tunis',
-      phone: '+216 71 888 999',
-      currency: 'TND',
-      tax_rate: 0,
-      created_at: '2026-10-01T12:00:00Z',
-      updated_at: '2026-10-01T12:00:00Z'
-    }
-  ],
+  restaurants: [ZOO_BAR_RESTAURANT],
   profiles: [
     {
       id: 'b0000000-0000-0000-0000-000000000001',
-      email: 'manager@demolounge.tn',
+      email: 'manager@zoobar.tn',
       full_name: 'Yassine Gérant',
       username: 'MANAGER_01',
       role: 'MANAGER',
@@ -144,7 +133,7 @@ export const INITIAL_DATA: DbState = {
     },
     {
       id: 'b0000000-0000-0000-0000-000000000873',
-      email: 'u873@demolounge.tn',
+      email: 'u873@zoobar.tn',
       full_name: 'Karim Serveur',
       username: 'U873',
       role: 'SERVER',
@@ -154,7 +143,7 @@ export const INITIAL_DATA: DbState = {
     },
     {
       id: 'b0000000-0000-0000-0000-000000000874',
-      email: 'u874@demolounge.tn',
+      email: 'u874@zoobar.tn',
       full_name: 'Sarra Serveuse',
       username: 'U874',
       role: 'SERVER',
@@ -208,33 +197,8 @@ export const INITIAL_DATA: DbState = {
     { id: 'sa-9', restaurant_id: 'a0000000-0000-0000-0000-000000000001', server_id: 'b0000000-0000-0000-0000-000000000874', table_id: 'd0000000-0000-0000-0000-000000000009', assigned_at: '2026-10-01T12:00:00Z' },
     { id: 'sa-10', restaurant_id: 'a0000000-0000-0000-0000-000000000001', server_id: 'b0000000-0000-0000-0000-000000000874', table_id: 'd0000000-0000-0000-0000-000000000010', assigned_at: '2026-10-01T12:00:00Z' }
   ],
-  categories: [
-    { id: 'c0000000-0000-0000-0000-000000000001', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Cocktails & Mixologie', icon: 'Wine', display_order: 1, is_active: true, created_at: '2026-10-01T12:00:00Z' },
-    { id: 'c0000000-0000-0000-0000-000000000002', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Bières & Vins', icon: 'Beer', display_order: 2, is_active: true, created_at: '2026-10-01T12:00:00Z' },
-    { id: 'c0000000-0000-0000-0000-000000000003', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Boissons & Cafés', icon: 'Coffee', display_order: 3, is_active: true, created_at: '2026-10-01T12:00:00Z' },
-    { id: 'c0000000-0000-0000-0000-000000000004', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Tapas & Planches', icon: 'UtensilsCrossed', display_order: 4, is_active: true, created_at: '2026-10-01T12:00:00Z' },
-    { id: 'c0000000-0000-0000-0000-000000000005', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Burgers & Plats', icon: 'Flame', display_order: 5, is_active: true, created_at: '2026-10-01T12:00:00Z' },
-    { id: 'c0000000-0000-0000-0000-000000000006', restaurant_id: 'a0000000-0000-0000-0000-000000000001', name: 'Desserts Gourmands', icon: 'Cake', display_order: 6, is_active: true, created_at: '2026-10-01T12:00:00Z' }
-  ],
-  products: [
-    { id: 'p-1', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000001', name: 'Mojito Passion Signature', description: 'Rhum blanc, menthe fraîche, purée de fruit de la passion, citron vert & soda', price: 18.500, image_url: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-2', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000001', name: 'Espresso Martini Lounge', description: 'Vodka premium, liqueur de café Kahlúa, shot expresso torréfié & sirop de vanille', price: 21.000, image_url: 'https://images.unsplash.com/photo-1545438102-799c3991ffb2?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-3', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000001', name: 'Spritz Mediterraneo', description: 'Apérol, Prosecco doc, orange sanguine & romarin fumé', price: 19.000, image_url: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&w=400&q=80', available: true, display_order: 3, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-4', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000001', name: 'Virgin Mojito Fraise', description: 'Fraises fraîches pilées, menthe du jardin, citron vert et eau pétillante', price: 12.000, image_url: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=400&q=80', available: true, display_order: 4, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-5', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000002', name: 'Bière Celtia Pression 50cl', description: 'Bière blonde tunisienne fraîche au fût', price: 8.500, image_url: 'https://images.unsplash.com/photo-1608270546103-9d0ec0753a99?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-6', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000002', name: 'Heineken Bouteille 33cl', description: 'Bière blonde internationale maltée', price: 10.000, image_url: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-7', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000002', name: 'Verre de Vin Magon Rouge', description: 'Notes de fruits mûrs et épices douces', price: 14.000, image_url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80', available: true, display_order: 3, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-8', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000003', name: 'Coca-Cola Zéro 33cl', description: 'Servi glacé avec rondelle de citron', price: 5.000, image_url: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-9', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000003', name: 'Eau Minérale Safia 1L', description: 'Bouteille en verre', price: 4.000, image_url: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-10', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000003', name: 'Café Espresso Illy', description: '100% Arabica, crémeux et intense', price: 4.500, image_url: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80', available: true, display_order: 3, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-11', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000004', name: 'Planche Mixte Charcuterie & Fromages', description: 'Bresaola, dinde fumée, gruyère affiné, camembert, noix et confiture de figues', price: 36.000, image_url: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-12', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000004', name: 'Crispy Calamari Sauce Tartare', description: 'Calamars dorés croustillants, zeste de citron jaune', price: 24.500, image_url: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-13', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000004', name: 'Nachos Gratinés Cheddar & Guacamole', description: 'Tortillas de maïs croustillantes, double cheddar fondant, jalapeños et guacamole', price: 22.000, image_url: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&w=400&q=80', available: true, display_order: 3, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-14', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000005', name: 'Lounge Smash Burger Double', description: 'Double steak bœuf frais haché minute, cheddar vintage fondu, oignons caramélisés et frites', price: 28.000, image_url: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-15', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000005', name: 'Pizza Burrata Truffée', description: 'Sauce San Marzano, fior di latte, burrata fraîche et huile de truffe', price: 32.000, image_url: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-16', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000006', name: 'Fondant Chocolat & Glace Vanille', description: 'Cœur coulant chocolat noir 70%, boule de vanille bourbon', price: 13.000, image_url: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80', available: true, display_order: 1, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' },
-    { id: 'p-17', restaurant_id: 'a0000000-0000-0000-0000-000000000001', category_id: 'c0000000-0000-0000-0000-000000000006', name: 'Cheesecake Spéculoos New York', description: 'Base croustillante spéculoos, crème onctueuse et caramel beurre salé', price: 14.500, image_url: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=400&q=80', available: true, display_order: 2, created_at: '2026-10-01T12:00:00Z', updated_at: '2026-10-01T12:00:00Z' }
-  ],
+  categories: ZOO_BAR_CATEGORIES,
+  products: ZOO_BAR_PRODUCTS,
   orders: [],
   orderItems: [],
   payments: [],
