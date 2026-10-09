@@ -32,10 +32,14 @@ export interface Restaurant {
   id: string;
   name: string;
   slug: string;
+  tagline?: string;
+  logo_url?: string;
   address: string;
   phone: string;
   currency: string;
   tax_rate: number;
+  wifi_ssid?: string;
+  wifi_password?: string;
   created_at: string;
   updated_at: string;
 }
